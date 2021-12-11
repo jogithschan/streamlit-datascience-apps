@@ -1,13 +1,19 @@
 import yfinance as yf
 import streamlit as st
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 st.write("""
 # **Stock price Data App**
-The app tracks 10 year data on the stock price of **Meta**
+The app tracks 5 year data on the stock price of **Apple**
 """)
-tickerSymbol = 'FB'
+tickerSymbol = 'AAPL'
 tickerData = yf.Ticker(tickerSymbol)
-tickerDataframe = tickerData.history(period='1d', start='2011-11-10', end='2021-11-10')
+oneMonthAgo = date.today() - relativedelta(months=1)
+# tenYearsAgo = oneMonthAgo - relativedelta(years=10)
+tenYearsAgo = date.today() - relativedelta(years=5)
+st.write("""### Start Date - """, tenYearsAgo, """ End Date - """, date.today())
+tickerDataframe = tickerData.history(period='1d', start=tenYearsAgo, end=date.today())
 # Open	High	Low	Close	Volume	Dividends	Stock Splits
 st.write(""" ## Closing Price """)
 st.line_chart(tickerDataframe.Close)
