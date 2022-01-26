@@ -5,9 +5,9 @@ from dateutil.relativedelta import relativedelta
 
 st.write("""
 # **Stock price Data App**
-The app tracks 5 year data on the stock price of **Apple**
+The app tracks 5 year data on the stock price of **Meta**
 """)
-tickerSymbol = 'AAPL'
+tickerSymbol = 'FB'
 tickerData = yf.Ticker(tickerSymbol)
 oneMonthAgo = date.today() - relativedelta(months=1)
 # tenYearsAgo = oneMonthAgo - relativedelta(years=10)
